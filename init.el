@@ -281,7 +281,10 @@
   :commands lsp-ui-mode)
 
 ;; magit
-(straight-use-package 'magit)
+(use-package magit
+  :straight t
+  :hook
+  (magit-status-sections . magit-insert-modules))
 
 ;; marginalia
 (use-package marginalia
