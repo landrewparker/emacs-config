@@ -8,7 +8,7 @@
 (defvar
   lap/list-of-dired-switches
   (if (eq system-type 'darwin)
-      '(("-Al" . "almost all")
+      '(("-Ahl" . "almost all")
         ("-hl" . "no dotfiles"))
     '(("--almost-all --dired --human-readable -l" . "almost all")
       ("--dired --human-readable -l" . "no dotfiles")))
