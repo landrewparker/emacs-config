@@ -284,9 +284,7 @@
 
 ;; magit
 (use-package magit
-  :straight t
-  :hook
-  (magit-status-sections . magit-insert-modules))
+  :straight t)
 
 ;; marginalia
 (use-package marginalia
