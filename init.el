@@ -60,6 +60,12 @@
   "Enable showing trailing whitespace."
   (setq show-trailing-whitespace t))
 
+(require 'shell)
+(defun lap/shell-mode-setup ()
+  "Tell comint that zsh will echo."
+  (if (string-equal shell--start-prog "zsh")
+      (setq-local comint-process-echoes t)))
+
 ;; Bootstrap straight.el
 ;; (See https://github.com/radian-software/straight.el#getting-started)
 (defvar bootstrap-version)
@@ -139,6 +145,7 @@
    (org-mode . visual-line-mode)
    (prog-mode . hl-line-mode)
    (prog-mode . lap/show-trailing-whitespace)
+   (shell-mode . lap/shell-mode-setup)
    (text-mode . hl-line-mode)
    (text-mode . lap/show-trailing-whitespace))
 
