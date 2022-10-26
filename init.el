@@ -94,6 +94,7 @@
   (compilation-scroll-output 'first-error)
   (confirm-kill-emacs 'y-or-n-p)
   (dired-listing-switches (caar lap/list-of-dired-switches))
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
   (help-window-select t)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
