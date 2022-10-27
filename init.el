@@ -77,7 +77,6 @@
   (inhibit-startup-screen t)
   (ispell-program-name "aspell")
   (native-comp-async-report-warnings-errors 'silent)
-  (org-startup-indented t)
   (require-final-newline 'query)
   (size-indication-mode t)
 
@@ -106,18 +105,9 @@
   ;; Auto-mode settings
   (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-tail-mode))
 
-  ;; Org-babel language settings
-  (with-eval-after-load 'org
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((C . t)
-       (emacs-lisp . t)
-       (python . t))))
-
   :hook
   ((auto-revert-tail-mode . lap/log-handler)
    (ediff-prepare-buffer . show-all)
-   (org-mode . visual-line-mode)
    (prog-mode . hl-line-mode)
    (prog-mode . lap/show-trailing-whitespace)
    (shell-mode . lap/shell-mode-setup)
@@ -318,6 +308,17 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
+
+;; org
+(use-package org
+  :straight (:type built-in)
+  :custom
+  (org-babel-load-languages '((C . t)
+                              (emacs-lisp . t)
+                              (python . t)))
+  (org-startup-indented t)
+  :hook
+  (org-mode . visual-line-mode))
 
 ;; server
 (use-package server
