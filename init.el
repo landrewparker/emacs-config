@@ -4,28 +4,7 @@
 
 ;;; Code:
 
-;; Variables
-(defvar
-  lap/list-of-dired-switches
-  (if (eq system-type 'darwin)
-      '(("-Ahl" . "almost all")
-        ("-hl" . "no dotfiles"))
-    '(("--almost-all --dired --human-readable -l" . "almost all")
-      ("--dired --human-readable -l" . "no dotfiles")))
-  "List of Dired ls switches and names for the mode line.")
-
 ;; Functions
-(require 'dired)
-(defun lap/cycle-dired-switches ()
-  "Cycle through `lap/list-of-dired-switches'."
-  (interactive)
-  (setq lap/list-of-dired-switches
-        (append (cdr lap/list-of-dired-switches)
-                (list (car lap/list-of-dired-switches))))
-  (dired-sort-other (caar lap/list-of-dired-switches))
-  (setq mode-name (concat "Dired " (cdar lap/list-of-dired-switches)))
-  (force-mode-line-update))
-
 (defun lap/disable-all-themes ()
   "Disable all enabled themes."
   (interactive)
@@ -93,7 +72,6 @@
   (column-number-mode t)
   (compilation-scroll-output 'first-error)
   (confirm-kill-emacs 'y-or-n-p)
-  (dired-listing-switches (caar lap/list-of-dired-switches))
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (help-window-select t)
   (indent-tabs-mode nil)
@@ -141,7 +119,6 @@
 
   :hook
   ((auto-revert-tail-mode . lap/log-handler)
-   (dired-mode . hl-line-mode)
    (ediff-prepare-buffer . show-all)
    (org-mode . visual-line-mode)
    (prog-mode . hl-line-mode)
@@ -153,9 +130,7 @@
   :bind
   (("C-c c" . compile)
    ("C-c p" . lap/previous-window)
-   ("C-c r" . revert-buffer)
-   :map dired-mode-map
-   ("C-c s" . lap/cycle-dired-switches))
+   ("C-c r" . revert-buffer))
 
   :config
   ;; Minor modes
@@ -205,6 +180,35 @@
 
 ;; diminish
 (straight-use-package 'diminish)
+
+;; dired
+(use-package dired
+  :straight (:type built-in)
+  :preface
+  (defvar
+    lap/list-of-dired-switches
+    (if (eq system-type 'darwin)
+        '(("-Ahl" . "almost all")
+          ("-hl" . "no dotfiles"))
+      '(("--almost-all --dired --human-readable -l" . "almost all")
+        ("--dired --human-readable -l" . "no dotfiles")))
+    "List of Dired ls switches and names for the mode line.")
+  :custom
+  (dired-listing-switches (caar lap/list-of-dired-switches))
+  :hook
+  (dired-mode . hl-line-mode)
+  :bind (:map dired-mode-map
+              ("C-c s" . lap/cycle-dired-switches))
+  :config
+  (defun lap/cycle-dired-switches ()
+    "Cycle through `lap/list-of-dired-switches'."
+    (interactive)
+    (setq lap/list-of-dired-switches
+          (append (cdr lap/list-of-dired-switches)
+                  (list (car lap/list-of-dired-switches))))
+    (dired-sort-other (caar lap/list-of-dired-switches))
+    (setq mode-name (concat "Dired " (cdar lap/list-of-dired-switches)))
+    (force-mode-line-update)))
 
 ;; doom modeline
 (use-package doom-modeline
