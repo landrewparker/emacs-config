@@ -104,11 +104,9 @@
 
   :hook
   ((ediff-prepare-buffer . show-all)
-   (prog-mode . hl-line-mode)
-   (prog-mode . lap/show-trailing-whitespace)
-   (shell-mode . lap/shell-mode-setup)
-   (text-mode . hl-line-mode)
-   (text-mode . lap/show-trailing-whitespace))
+   ((prog-mode text-mode) . hl-line-mode)
+   ((prog-mode text-mode) . lap/show-trailing-whitespace)
+   (shell-mode . lap/shell-mode-setup))
 
   :bind
   (("C-c c" . compile)
