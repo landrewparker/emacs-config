@@ -341,6 +341,16 @@
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
+;; tree-sitter
+(use-package tree-sitter
+  :straight t
+  :init (global-tree-sitter-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs
+  :straight t
+  :after tree-sitter)
+
 ;; vertico
 (use-package vertico
   :straight t
