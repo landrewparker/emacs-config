@@ -104,12 +104,7 @@
   :bind
   (("C-c c" . compile)
    ("C-c p" . lap/previous-window)
-   ("C-c r" . revert-buffer))
-
-  :config
-  ;; Minor modes
-  (savehist-mode)
-  (save-place-mode))
+   ("C-c r" . revert-buffer)))
 
 ;; ace-window
 (use-package ace-window
@@ -314,6 +309,16 @@
   (org-startup-indented t)
   :hook
   (org-mode . visual-line-mode))
+
+;; savehist
+(use-package savehist
+  :straight (:type built-in)
+  :config (savehist-mode))
+
+;; saveplace
+(use-package saveplace
+  :straight (:type built-in)
+  :config (save-place-mode))
 
 ;; server
 (use-package server
