@@ -104,8 +104,6 @@
   (add-to-list 'custom-theme-load-path "~/lib/emacs")
 
   ;; Auto-mode settings
-  (add-to-list 'auto-mode-alist '("\\.do\\'" . tcl-mode))
-  (add-to-list 'auto-mode-alist '("\\.f\\'" . tcl-mode))
   (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-tail-mode))
 
   ;; Org-babel language settings
@@ -336,6 +334,13 @@
   :straight t
   :custom
   (verilog-auto-newline nil))
+
+;; tcl
+(use-package tcl
+  :straight (:type built-in)
+  :mode
+    (("\\.do\\'" . tcl-mode)
+     ("\\.f\\'" . tcl-mode)))
 
 ;; tramp
 (use-package tramp
