@@ -102,12 +102,8 @@
   (add-to-list 'load-path "~/lib/emacs/")
   (add-to-list 'custom-theme-load-path "~/lib/emacs")
 
-  ;; Auto-mode settings
-  (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-tail-mode))
-
   :hook
-  ((auto-revert-tail-mode . lap/log-handler)
-   (ediff-prepare-buffer . show-all)
+  ((ediff-prepare-buffer . show-all)
    (prog-mode . hl-line-mode)
    (prog-mode . lap/show-trailing-whitespace)
    (shell-mode . lap/shell-mode-setup)
@@ -136,6 +132,14 @@
 (use-package all-the-icons
   :straight t
   :if (display-graphic-p))
+
+;; auto-revert
+(use-package autorevert
+  :straight (:type built-in)
+  :mode
+  ("\\.log\\'" . auto-revert-tail-mode)
+  :hook
+  (auto-revert-tail-mode . lap/log-handler))
 
 ;; consult
 (use-package consult
