@@ -329,21 +329,15 @@
   (unless (server-running-p)
     (server-start)))
 
-;; transpose-frame
-(straight-use-package 'transpose-frame)
-
-;; verilog-mode
-(use-package verilog-mode
-  :straight t
-  :custom
-  (verilog-auto-newline nil))
-
 ;; tcl
 (use-package tcl
   :straight (:type built-in)
   :mode
     (("\\.do\\'" . tcl-mode)
      ("\\.f\\'" . tcl-mode)))
+
+;; transpose-frame
+(straight-use-package 'transpose-frame)
 
 ;; tramp
 (use-package tramp
@@ -360,6 +354,12 @@
 (use-package tree-sitter-langs
   :straight t
   :after tree-sitter)
+
+;; verilog-mode
+(use-package verilog-mode
+  :straight t
+  :custom
+  (verilog-auto-newline nil))
 
 ;; vertico
 (use-package vertico
