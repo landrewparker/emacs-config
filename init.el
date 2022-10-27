@@ -66,7 +66,6 @@
 (require 'use-package)
 
 ;; emacs
-(require 'server) ; FIXME: How can I get rid of this
 (use-package emacs
   :custom
   (column-number-mode t)
@@ -135,11 +134,7 @@
   :config
   ;; Minor modes
   (savehist-mode)
-  (save-place-mode)
-
-  ;; Emacs server
-  (unless (server-running-p)
-    (server-start)))
+  (save-place-mode))
 
 ;; ace-window
 (use-package ace-window
@@ -325,6 +320,13 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
+
+;; server
+(use-package server
+  :straight (:type built-in)
+  :config
+  (unless (server-running-p)
+    (server-start)))
 
 ;; transpose-frame
 (straight-use-package 'transpose-frame)
