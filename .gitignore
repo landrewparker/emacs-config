@@ -1,7 +1,8 @@
 /auto-save-list/
-/bookmarks
+/bookmarks*
 /eln-cache/
 /history
+/.lsp-*
 /places
 /straight/
 /tramp
