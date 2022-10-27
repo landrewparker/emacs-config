@@ -103,7 +103,7 @@
   (add-to-list 'custom-theme-load-path "~/lib/emacs")
 
   :hook
-  ((ediff-prepare-buffer . show-all)
+  ((ediff-prepare-buffer . outline-show-all)
    ((prog-mode text-mode) . hl-line-mode)
    ((prog-mode text-mode) . lap/show-trailing-whitespace)
    (shell-mode . lap/shell-mode-setup))
