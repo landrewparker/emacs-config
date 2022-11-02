@@ -152,7 +152,8 @@
   :config (corfu-terminal-mode +1))
 
 ;; diminish
-(straight-use-package 'diminish)
+(use-package diminish
+  :straight t)
 
 ;; dired
 (use-package dired
@@ -189,7 +190,8 @@
   :config (doom-modeline-mode))
 
 ;; ef-themes
-(straight-use-package 'ef-themes)
+(use-package ef-themes
+  :straight t)
 
 ;; embark
 (use-package embark
@@ -218,7 +220,8 @@
   (global-flycheck-mode))
 
 ;; json-mode
-(straight-use-package 'json-mode)
+(use-package json-mode
+  :straight t)
 
 ;; lsp-mode
 (use-package lsp-mode
