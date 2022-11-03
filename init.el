@@ -277,7 +277,7 @@
 ;; marginalia
 (use-package marginalia
   :straight t
-  :init (marginalia-mode))
+  :config (marginalia-mode))
 
 ;; modus-themes
 (use-package modus-themes
@@ -377,7 +377,7 @@
 ;; vertico
 (use-package vertico
   :straight t
-  :init (vertico-mode))
+  :config (vertico-mode))
 
 ;; vscode-dark-plus-theme
 (use-package vscode-dark-plus-theme
@@ -391,7 +391,7 @@
 (use-package which-key
   :straight t
   :diminish
-  :init (which-key-mode))
+  :config (which-key-mode))
 
 ;; yaml-mode
 (use-package yaml-mode
