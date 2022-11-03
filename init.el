@@ -333,13 +333,13 @@
 ;; shell
 (use-package shell
   :straight (:type built-in)
-  :hook
-  (shell-mode . lap/shell-mode-setup)
   :init
   (defun lap/shell-mode-setup ()
     "Tell comint that zsh will echo."
     (if (string-equal shell--start-prog "zsh")
-        (setq-local comint-process-echoes t))))
+        (setq-local comint-process-echoes t)))
+  :hook
+  (shell-mode . lap/shell-mode-setup))
 
 ;; tcl
 (use-package tcl
@@ -349,7 +349,8 @@
      ("\\.f\\'" . tcl-mode)))
 
 ;; transpose-frame
-(straight-use-package 'transpose-frame)
+(use-package transpose-frame
+  :straight t)
 
 ;; tramp
 (use-package tramp
@@ -379,13 +380,12 @@
   :init (vertico-mode))
 
 ;; vscode-dark-plus-theme
-(straight-use-package 'vscode-dark-plus-theme)
-
-;; vterm
-(straight-use-package 'vterm)
+(use-package vscode-dark-plus-theme
+  :straight t)
 
 ;; wgrep
-(straight-use-package 'wgrep)
+(use-package wgrep
+  :straight t)
 
 ;; which-key
 (use-package which-key
@@ -394,6 +394,7 @@
   :init (which-key-mode))
 
 ;; yaml-mode
-(straight-use-package 'yaml-mode)
+(use-package yaml-mode
+  :straight t)
 
 ;;; init.el ends here
