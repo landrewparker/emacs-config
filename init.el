@@ -109,10 +109,10 @@
 ;; ace-window
 (use-package ace-window
   :straight t
-  :bind ("M-o" . ace-window)
-  :init
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  (setq aw-background nil))
+  :custom
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (aw-background nil)
+  :bind ("M-o" . ace-window))
 
 ;; all-the-icons
 (use-package all-the-icons
@@ -143,7 +143,7 @@
 (use-package corfu
   :straight t
   :custom (corfu-auto t)
-  :init (global-corfu-mode))
+  :config (global-corfu-mode))
 
 ;; corfu-terminal
 (use-package corfu-terminal
@@ -210,9 +210,9 @@
 ;; flycheck
 (use-package flycheck
   :straight t
-  :init
-  (setq flycheck-emacs-lisp-load-path 'inherit)
-  (setq flycheck-disabled-checkers '(python-pylint python-mypy))
+  :custom
+  (flycheck-emacs-lisp-load-path 'inherit)
+  (flycheck-disabled-checkers '(python-pylint python-mypy))
   :hook
   (lsp-after-initialize
    . (lambda () (flycheck-add-next-checker 'lsp 'python-flake8)))
@@ -361,8 +361,8 @@
 ;; tree-sitter
 (use-package tree-sitter
   :straight t
-  :init (global-tree-sitter-mode)
-  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode)
+  :config (global-tree-sitter-mode))
 
 (use-package tree-sitter-langs
   :straight t
