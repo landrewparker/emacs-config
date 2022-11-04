@@ -102,7 +102,8 @@
    ((prog-mode text-mode) . lap/show-trailing-whitespace))
 
   :bind
-  (("C-c c" . compile)
+  (("C-c ;" . comment-line)  ; C-; is note available in terminals
+   ("C-c c" . compile)
    ("C-c p" . lap/previous-window)
    ("C-c r" . revert-buffer)))
 
