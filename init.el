@@ -205,7 +205,6 @@
 ;; embark-consult
 (use-package embark-consult
   :straight t
-  :ensure t
   :after (embark consult))
 
 ;; flycheck
