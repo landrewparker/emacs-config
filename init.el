@@ -77,7 +77,8 @@
   :init
   ;; GUI
   (unless (and (eq system-type 'darwin) (display-graphic-p))
-      (menu-bar-mode -1))
+    ;; Menu bar is not intrusive on MacOS
+    (menu-bar-mode -1))
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
   (setq
