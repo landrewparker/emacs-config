@@ -91,6 +91,9 @@
     ;; are other faces like this which might need to be set as well,
     ;; e.g. variable-pitch sets family to Sans Serif.
     (set-face-attribute 'fixed-pitch nil :family (face-attribute 'default :family)))
+  (unless (display-graphic-p)
+    ;; Get a solid vertical border with unicode light vertical line
+    (set-display-table-slot standard-display-table 'vertical-border ?│))
 
   ;; Load paths
   (add-to-list 'load-path "~/lib/emacs/")
