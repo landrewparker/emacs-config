@@ -69,7 +69,6 @@
   (help-window-select t)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
-  (ispell-program-name "aspell")
   (native-comp-async-report-warnings-errors 'silent)
   (require-final-newline 'query)
   (size-indication-mode t)
@@ -222,6 +221,20 @@
    . (lambda () (flycheck-add-next-checker 'lsp 'python-flake8)))
   :config
   (global-flycheck-mode))
+
+;; ispell
+(use-package ispell
+  :straight t (:type built-in)
+  :custom
+  (ispell-program-name "aspell")
+  (ispell-extra-args
+   (append
+    '("--sug-mode=ultra")
+    ;; New versions of aspell support --camel-case
+    (when (string-match-p
+           "--.*camel-case"
+           (shell-command-to-string "aspell --help"))
+      '("--camel-case")))))
 
 ;; json-mode
 (use-package json-mode
