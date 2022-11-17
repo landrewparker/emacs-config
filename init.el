@@ -189,12 +189,16 @@
     (force-mode-line-update)))
 
 ;; doom modeline
-(use-package doom-modeline
-  :straight t
-  :config (doom-modeline-mode))
+;; (use-package doom-modeline
+;;   :straight t
+;;   :config (doom-modeline-mode))
 
 ;; ef-themes
 (use-package ef-themes
+  :straight t)
+
+;; eglot
+(use-package eglot
   :straight t)
 
 ;; embark
@@ -210,19 +214,19 @@
   :straight t
   :after (embark consult))
 
-;; flycheck
-(use-package flycheck
+;; flymake
+(use-package flymake
   :straight t
   :custom
-  (flycheck-emacs-lisp-load-path 'inherit)
-  (flycheck-disabled-checkers '(python-pylint python-mypy))
-  :hook
-  (lsp-after-initialize
-   . (lambda () (flycheck-add-next-checker 'lsp 'python-flake8)))
+  (python-flymake-command '("flake8" "-"))
+  ;; (python-flymake-command '("pylint" "--from-stdin" "stdin"))
   :config
-  (global-flycheck-mode))
+  (setq elisp-flymake-byte-compile-load-path load-path)
+  :hook
+  (emacs-lisp-mode . flymake-mode)
+  (python-mode . flymake-mode))
 
-;; ispell
+;; ispell (aspell)
 (use-package ispell
   :straight t (:type built-in)
   :custom
@@ -239,53 +243,6 @@
 ;; json-mode
 (use-package json-mode
   :straight t)
-
-;; lsp-mode
-(use-package lsp-mode
-  :straight t
-  :commands lsp
-
-  :custom
-  (lsp-completion-provider :none)  ; Use corfu
-
-  :init
-  (defun lap/setup-lsp-mode-completion ()
-    "Use orderless completion with corfu."
-    (setf (alist-get
-           'styles
-           (alist-get 'lsp-capf completion-category-defaults))
-          '(orderless)))
-
-  (setq lsp-keymap-prefix "C-c l")
-  (setq lsp-enable-snippet nil)
-
-  :hook
-  ((verilog-mode . lsp)
-   (lsp-mode . lsp-enable-which-key-integration)
-   (lsp-completion-mode . lap/setup-lsp-mode-completion))
-
-  :config
-  (lsp-register-client
-   (make-lsp-client
-    :new-connection (lsp-stdio-connection '("svls"))
-    :major-modes '(verilog-mode)
-    :priority -1))
-  (add-to-list 'lsp-language-id-configuration '(verilog-mode . "verilog")))
-  ;; TODO: Is the necessary?
-  ;; (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]desres-python\\'"))
-
-;; lsp-pyright
-(use-package lsp-pyright
-  :straight t
-  :hook
-  (python-mode . (lambda ()
-                   (require 'lsp-pyright)
-                   (lsp))))
-
-;; lsp-ui
-(use-package lsp-ui
-  :straight t
-  :commands lsp-ui-mode)
 
 ;; magit
 (use-package magit
