@@ -216,7 +216,7 @@
 
 ;; flymake
 (use-package flymake
-  :straight t
+  :straight t  ;; FIXME: Use built-in flymake if it's now the same
   :custom
   (flymake-no-changes-timeout 2)
   :config
