@@ -218,13 +218,24 @@
 (use-package flymake
   :straight t
   :custom
-  (python-flymake-command '("flake8" "-"))
-  ;; (python-flymake-command '("pylint" "--from-stdin" "stdin"))
+  (flymake-no-changes-timeout 2)
   :config
   (setq elisp-flymake-byte-compile-load-path load-path)
   :hook
   (emacs-lisp-mode . flymake-mode)
   (python-mode . flymake-mode))
+
+;; flymake-collection
+(use-package flymake-collection
+  :straight t
+  :hook
+  (after-init . flymake-collection-hook-setup))
+
+(use-package emacs
+  :flymake-hook
+  (python-mode
+   flymake-collection-pylint
+   flymake-collection-flake8))
 
 ;; ispell (aspell)
 (use-package ispell
