@@ -199,7 +199,16 @@
 
 ;; eglot
 (use-package eglot
-  :straight t)
+  :straight t
+  :init
+  ;; Keep eglot from removing other flymake backends
+  ;; FIXME: Should this only be applied to python-mode?
+  (setq eglot-stay-out-of '(flymake))
+  (defun lap/add-eglot-flymake-backend ()
+    (add-hook 'flymake-diagnostic-functions 'eglot-flymake-backend nil t))
+  :hook
+  ;; Manually add the flymake eglot backend
+  (eglot-managed-mode . lap/add-eglot-flymake-backend))
 
 ;; embark
 (use-package embark
