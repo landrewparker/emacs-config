@@ -189,9 +189,9 @@
     (force-mode-line-update)))
 
 ;; doom modeline
-;; (use-package doom-modeline
-;;   :straight t
-;;   :config (doom-modeline-mode))
+(use-package doom-modeline
+  :straight t
+  :config (doom-modeline-mode))
 
 ;; ef-themes
 (use-package ef-themes
