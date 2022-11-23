@@ -354,7 +354,7 @@
 
 ;; tree-sitter
 (use-package tree-sitter
-  :straight t
+  :straight t  ;; Fixme: Use built-in version when ready
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
   :config (global-tree-sitter-mode))
 
