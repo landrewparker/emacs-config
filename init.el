@@ -201,14 +201,27 @@
 (use-package eglot
   :straight t
   :init
-  ;; Keep eglot from removing other flymake backends
-  ;; FIXME: Should this only be applied to python-mode?
+  ;; Keep eglot from removing other flymake backends.
+  ;;
+  ;; Pyright doesn't do linting with flake8 and pylint. So I want them
+  ;; to still run with flymake. Eglot takes over managing the buffer
+  ;; though, so it removes the flymake backends I'm using for flake8
+  ;; and pylint.  It also removes flymake from eldoc. This workaround
+  ;; just tells eglot to leave flymake backends alone. It doesn't keep
+  ;; eglot from messing with eldoc though, which prevents flymake
+  ;; messages from displaying in the minibuffer. So we need to
+  ;; manually add the eglot backend for flymake and also re-add
+  ;; flymake to eldoc. Maybe there's a better way?
+  ;;
   (setq eglot-stay-out-of '(flymake))
-  (defun lap/add-eglot-flymake-backend ()
-    (add-hook 'flymake-diagnostic-functions 'eglot-flymake-backend nil t))
+  (defun lap/fix-eglot-flymake ()
+    ;; Manually add the flymake backend for eglot
+    (add-hook 'flymake-diagnostic-functions 'eglot-flymake-backend nil t)
+    ;; Undo eglot removal of flymake from eldoc
+    (add-hook 'eldoc-documentation-functions 'flymake-eldoc-function nil t))
   :hook
   ;; Manually add the flymake eglot backend
-  (eglot-managed-mode . lap/add-eglot-flymake-backend))
+  (eglot-managed-mode . lap/fix-eglot-flymake))
 
 ;; embark
 (use-package embark
