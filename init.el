@@ -25,6 +25,12 @@
   (interactive)
   (other-window -1))
 
+(defun lap/setup-flymake-python ()
+  "Setup flymake for Python mode."
+  (add-hook 'flymake-diagnostic-functions 'flymake-collection-pylint nil t)
+  (add-hook 'flymake-diagnostic-functions 'flymake-collection-flake8 nil t)
+  (flymake-mode))
+
 (defun lap/switch-to-theme (theme)
   "Switch to THEME.  Disable all other active themes."
   (interactive
@@ -238,26 +244,18 @@
 
 ;; flymake
 (use-package flymake
-  :straight t  ;; FIXME: Use built-in flymake if it's now the same
+  :straight t  (:type built-in)
   :custom
   (flymake-no-changes-timeout 2)
   :config
   (setq elisp-flymake-byte-compile-load-path load-path)
   :hook
   (emacs-lisp-mode . flymake-mode)
-  (python-mode . flymake-mode))
+  (python-mode . lap/setup-flymake-python))
 
 ;; flymake-collection
 (use-package flymake-collection
-  :straight t
-  :hook
-  (after-init . flymake-collection-hook-setup))
-
-(use-package emacs
-  :flymake-hook
-  (python-mode
-   flymake-collection-pylint
-   flymake-collection-flake8))
+  :straight t)
 
 ;; ispell (aspell)
 (use-package ispell
