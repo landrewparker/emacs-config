@@ -251,7 +251,11 @@
   (setq elisp-flymake-byte-compile-load-path load-path)
   :hook
   (emacs-lisp-mode . flymake-mode)
-  (python-mode . lap/setup-flymake-python))
+  (python-mode . lap/setup-flymake-python)
+  :bind
+  (:map flymake-mode-map
+        ("M-n" . 'flymake-goto-next-error)
+        ("M-p" . 'flymake-goto-prev-error)))
 
 ;; flymake-collection
 (use-package flymake-collection
