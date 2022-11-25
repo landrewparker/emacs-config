@@ -225,6 +225,7 @@
   :straight t  (:type built-in)
   :custom
   (flymake-no-changes-timeout 2)
+  (python-flymake-command nil)
   :config
   (setq elisp-flymake-byte-compile-load-path load-path)
   :hook
