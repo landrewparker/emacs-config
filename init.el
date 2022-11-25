@@ -27,6 +27,7 @@
 
 (defun lap/setup-flymake-python ()
   "Setup flymake for Python mode."
+  (interactive)
   (add-hook 'flymake-diagnostic-functions 'flymake-collection-pylint nil t)
   (add-hook 'flymake-diagnostic-functions 'flymake-collection-flake8 nil t)
   (flymake-mode))
