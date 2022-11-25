@@ -233,9 +233,9 @@
 (use-package embark
   :straight t
   :bind
-  ("C-c e a"  .  'embark-act)
-  ("C-c e d"  .  'embark-dwim)
-  ("C-c e B"  .  'embark-bindings))
+  (("C-c e a"  .  'embark-act)
+   ("C-c e d"  .  'embark-dwim)
+   ("C-c e B"  .  'embark-bindings)))
 
 ;; embark-consult
 (use-package embark-consult
