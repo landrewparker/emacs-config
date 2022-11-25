@@ -206,7 +206,7 @@
 
 ;; eglot
 (use-package eglot
-  :straight t)
+  :straight t)  ; FIXME: Use built-in version when ready
 
 ;; embark
 (use-package embark
@@ -223,7 +223,7 @@
 
 ;; flymake
 (use-package flymake
-  :straight t  (:type built-in)
+  :straight t  ; FIXME: Use built-in version when ready
   :custom
   (flymake-no-changes-timeout 2)
   (python-flymake-command nil)
@@ -349,7 +349,7 @@
 
 ;; tree-sitter
 (use-package tree-sitter
-  :straight t  ;; Fixme: Use built-in version when ready
+  :straight t  ; FIXME: Use built-in version when ready
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
   :init (global-tree-sitter-mode))
 
