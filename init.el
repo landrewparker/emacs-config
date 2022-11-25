@@ -367,7 +367,7 @@
 (use-package tree-sitter
   :straight t  ;; Fixme: Use built-in version when ready
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
-  :config (global-tree-sitter-mode))
+  :init (global-tree-sitter-mode))
 
 (use-package tree-sitter-langs
   :straight t
