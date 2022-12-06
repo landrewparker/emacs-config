@@ -306,6 +306,13 @@
 (use-package pdf-tools
   :straight t)
 
+;; python
+(use-package python
+  :straight (:type built-in)
+  :custom
+  (python-shell-interpreter "ipython3")
+  (python-shell-interpreter-args "--simple-prompt"))
+
 ;; savehist
 (use-package savehist
   :straight (:type built-in)
