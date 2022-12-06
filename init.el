@@ -302,6 +302,10 @@
   :hook
   (org-mode . visual-line-mode))
 
+;; pdf-tools
+(use-package pdf-tools
+  :straight t)
+
 ;; savehist
 (use-package savehist
   :straight (:type built-in)
