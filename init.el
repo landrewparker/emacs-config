@@ -100,7 +100,9 @@
     (set-face-attribute 'fixed-pitch nil :family (face-attribute 'default :family)))
   (unless (display-graphic-p)
     ;; Get a solid vertical border with unicode light vertical line
-    (set-display-table-slot standard-display-table 'vertical-border ?│))
+    (set-display-table-slot standard-display-table 'vertical-border ?│)
+    ;; Remove hyphens from the end of mode line
+    (setq mode-line-end-spaces nil))
 
   ;; Load paths
   (add-to-list 'load-path "~/lib/emacs/")
