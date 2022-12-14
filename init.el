@@ -104,6 +104,13 @@
     ;; Remove hyphens from the end of mode line
     (setq mode-line-end-spaces nil))
 
+  ;; garden-exec header matching
+  (defvar lap/garden-exec-regex
+    "#!/usr/bin/garden-exec.*\n#{.*\n\\(# garden .*\n\\)*# "
+    "A regex to match the garden-exec header.")
+  (add-to-list 'magic-fallback-mode-alist
+               (cons (concat lap/garden-exec-regex "python") 'python-mode))
+
   ;; Load paths
   (add-to-list 'load-path "~/lib/emacs/")
   (add-to-list 'custom-theme-load-path "~/lib/emacs")
