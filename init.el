@@ -279,8 +279,7 @@
 
 ;; modus-themes
 (use-package modus-themes
-  :straight t
-  :config (modus-themes-load-themes))
+  :straight t)
 
 ;; nord-theme
 ;;
