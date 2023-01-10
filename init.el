@@ -215,7 +215,10 @@
 
 ;; eglot
 (use-package eglot
-  :straight t)  ; FIXME: Use built-in version when ready
+  :straight t  ; FIXME: Use built-in version when ready
+  :config
+  (add-to-list 'eglot-server-programs
+               '(verilog-mode . ("svls"))))
 
 ;; embark
 (use-package embark
