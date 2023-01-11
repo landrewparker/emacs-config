@@ -1,9 +1,12 @@
+/.lsp-*
 /auto-save-list/
 /bookmarks*
 /eln-cache/
+/eshell/
 /history
-/.lsp-*
 /places
+/projects
 /straight/
 /tramp
 /transient/
+/url/
