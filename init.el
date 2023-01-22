@@ -277,6 +277,10 @@
   :straight t
   :config (marginalia-mode))
 
+;; markdown
+(use-package markdown-mode
+  :straight t)
+
 ;; modus-themes
 (use-package modus-themes
   :straight t)
