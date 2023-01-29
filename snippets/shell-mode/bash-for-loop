@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bash-for-loop
+# key: for
+# --
+
+for $0 in word ... ; do list ; done

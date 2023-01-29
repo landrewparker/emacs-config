@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bash-if-then
+# key: if
+# --
+
+if $0; then list; [ elif list; then list; ] ... [ else list; ] fi

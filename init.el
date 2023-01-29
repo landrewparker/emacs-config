@@ -412,4 +412,9 @@
 (use-package yaml-mode
   :straight t)
 
+;; yasnipprt
+(use-package yasnippet
+  :straight t
+  :config (yas-global-mode 1))
+
 ;;; init.el ends here
