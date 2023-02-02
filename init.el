@@ -314,6 +314,7 @@
                               (emacs-lisp . t)
                               (python . t)
                               (shell . t)))
+  (org-babel-python-command "python3")
   (org-startup-indented t)
   :hook
   (org-mode . visual-line-mode))
