@@ -312,7 +312,8 @@
   :custom
   (org-babel-load-languages '((C . t)
                               (emacs-lisp . t)
-                              (python . t)))
+                              (python . t)
+                              (shell . t)))
   (org-startup-indented t)
   :hook
   (org-mode . visual-line-mode))
