@@ -1,4 +1,4 @@
-;;; package --- init.el
+;;; package --- init.el  -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -187,12 +187,35 @@
       '(("--almost-all --dired --human-readable -l" . "almost all")
         ("--dired --human-readable -l" . "no dotfiles")))
     "List of Dired ls switches and names for the mode line.")
+
+  (defun lap/dired-ediff-files ()
+    "Ediff marked files, or ask for a file"
+    (interactive)
+    (let ((files (dired-get-marked-files))
+          (window-config (current-window-configuration)))
+      (if (<= (length files) 2)
+          (let ((file1 (car files))
+                (file2 (if (cdr files)
+                           (cadr files)
+                         (read-file-name
+                          "file: "
+                          (dired-dwim-target-directory)))))
+            (if (file-newer-than-file-p file1 file2)
+                (ediff-files file2 file1)
+              (ediff-files file1 file2))
+            (add-hook 'ediff-after-quit-hook-internal
+                      (lambda ()
+                        (setq ediff-after-quit-hook-internal nil)
+                        (set-window-configuration window-config))))
+        (error "No more than 2 files should be marked"))))
+
   :custom
   (dired-listing-switches (caar lap/list-of-dired-switches))
   :hook
   (dired-mode . hl-line-mode)
   :bind (:map dired-mode-map
-              ("C-c s" . lap/cycle-dired-switches))
+              ("C-c s" . lap/cycle-dired-switches)
+              ("C-c =" . lap/dired-ediff-files))
   :config
   (defun lap/cycle-dired-switches ()
     "Cycle through `lap/list-of-dired-switches'."
