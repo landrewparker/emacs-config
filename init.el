@@ -142,6 +142,7 @@
 ;; auto-revert
 (use-package autorevert
   :straight (:type built-in)
+  :diminish auto-revert-mode
   :mode
   ("\\.log\\'" . auto-revert-tail-mode)
   :hook
@@ -242,6 +243,11 @@
   :config
   (add-to-list 'eglot-server-programs
                '(verilog-mode . ("svls"))))
+
+;; eldoc
+(use-package eldoc
+  :straight t (:type built-in)
+  :diminish)
 
 ;; embark
 (use-package embark
