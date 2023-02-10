@@ -326,7 +326,6 @@
   :host github
   :repo "landrewparker/nord-emacs"
   :branch "develop"))
-(load-theme 'nord t)
 
 ;; orderless
 (use-package orderless
