@@ -78,6 +78,7 @@
   (inhibit-startup-screen t)
   (native-comp-async-report-warnings-errors 'silent)
   (require-final-newline 'query)
+  (sh-alias-alist '((garden-exec . bash)))
   (size-indication-mode t)
 
   :init
@@ -110,6 +111,8 @@
     "A regex to match the garden-exec header.")
   (add-to-list 'magic-fallback-mode-alist
                (cons (concat lap/garden-exec-regex "python") 'python-mode))
+  (add-to-list 'magic-fallback-mode-alist
+               (cons (concat lap/garden-exec-regex "bash") 'shell-script-mode))
 
   ;; Load paths
   (add-to-list 'load-path "~/lib/emacs/")
