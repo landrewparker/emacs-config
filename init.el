@@ -4,48 +4,6 @@
 
 ;;; Code:
 
-;; Functions
-(defun lap/disable-all-themes ()
-  "Disable all enabled themes."
-  (interactive)
-  (mapc #'disable-theme custom-enabled-themes))
-
-(defun lap/frame-background-mode-light ()
-  "Tell Emacs the background is a light color."
-  (interactive)
-  (let ((frame-background-mode 'light)) (frame-set-background-mode nil)))
-
-(defun lap/log-handler ()
-  "Settings for log files."
-  (goto-char (point-max))
-  (read-only-mode t))
-
-(defun lap/previous-window ()
-  "Switch to previous window."
-  (interactive)
-  (other-window -1))
-
-(defun lap/setup-flymake-python ()
-  "Setup flymake for Python mode."
-  (interactive)
-  (add-hook 'flymake-diagnostic-functions 'flymake-collection-pylint nil t)
-  (add-hook 'flymake-diagnostic-functions 'flymake-collection-flake8 nil t)
-  (flymake-mode))
-
-(defun lap/switch-to-theme (theme)
-  "Switch to THEME.  Disable all other active themes."
-  (interactive
-   (list
-    (intern (completing-read
-             "Switch to theme: "
-             (mapcar 'symbol-name (custom-available-themes))))))
-  (lap/disable-all-themes)
-  (load-theme theme t))
-
-(defun lap/show-trailing-whitespace ()
-  "Enable showing trailing whitespace."
-  (setq show-trailing-whitespace t))
-
 ;; Bootstrap straight.el
 ;; (See https://github.com/radian-software/straight.el#getting-started)
 (defvar bootstrap-version)
@@ -82,6 +40,33 @@
   (size-indication-mode t)
 
   :init
+  ;; Functions
+  (defun lap/frame-background-mode-light ()
+    "Tell Emacs the background is a light color."
+    (interactive)
+    (let ((frame-background-mode 'light)) (frame-set-background-mode nil)))
+
+  (defun lap/log-handler ()
+    "Settings for log files."
+    (goto-char (point-max))
+    (read-only-mode t))
+
+  (defun lap/previous-window ()
+    "Switch to previous window."
+    (interactive)
+    (other-window -1))
+
+  (defun lap/setup-flymake-python ()
+    "Setup flymake for Python mode."
+    (interactive)
+    (add-hook 'flymake-diagnostic-functions 'flymake-collection-pylint nil t)
+    (add-hook 'flymake-diagnostic-functions 'flymake-collection-flake8 nil t)
+    (flymake-mode))
+
+  (defun lap/show-trailing-whitespace ()
+    "Enable showing trailing whitespace."
+    (setq show-trailing-whitespace t))
+
   ;; GUI
   (unless (and (eq system-type 'darwin) (display-graphic-p))
     ;; Menu bar is not intrusive on MacOS
