@@ -90,13 +90,13 @@
     (setq mode-line-end-spaces nil))
 
   ;; garden-exec header matching
-  (defvar lap/garden-exec-regex
-    "#!/usr/bin/garden-exec.*\n#{.*\n\\(# garden .*\n\\)*# \\(exec \\)?"
-    "A regex to match the garden-exec header.")
-  (add-to-list 'magic-fallback-mode-alist
-               (cons (concat lap/garden-exec-regex "python") 'python-mode))
-  (add-to-list 'magic-fallback-mode-alist
-               (cons (concat lap/garden-exec-regex "bash") 'shell-script-mode))
+  (let ((garden-exec-regex
+         "#!/usr/bin/garden-exec.*\n#{.*\n\\(# garden .*\n\\)*# \\(exec \\)?")
+        (garden-mode-alist '(("python" . python-mode)
+                            ("bash" . shell-script-mode))))
+    (dolist (mode garden-mode-alist)
+      (add-to-list 'magic-fallback-mode-alist
+                   (cons (concat garden-exec-regex (car mode)) (cdr mode)))))
 
   ;; Load paths
   (add-to-list 'load-path "~/lib/emacs/")
