@@ -22,7 +22,6 @@
 
 ;; use-package
 (straight-use-package 'use-package)
-(require 'use-package)
 
 ;; emacs
 (use-package emacs
