@@ -39,7 +39,19 @@
   (size-indication-mode t)
 
   :init
+  ;; Variables
+  (defvar lap/ediff-last-window-configuration nil
+    "The last window configuration before ediff started.")
+
   ;; Functions
+  (defun lap/ediff-save-window-configuration ()
+    "Save the last window configuration before starting ediff."
+    (setq lap/ediff-last-window-configuration (current-window-configuration)))
+
+  (defun lap/ediff-restore-window-configuration ()
+    "Restore the last window configuration before starting ediff."
+    (set-window-configuration lap/ediff-last-window-configuration))
+
   (defun lap/frame-background-mode-light ()
     "Tell Emacs the background is a light color."
     (interactive)
@@ -103,7 +115,9 @@
   (add-to-list 'custom-theme-load-path "~/lib/emacs")
 
   :hook
-  ((ediff-prepare-buffer . outline-show-all)
+  ((ediff-before-setup . lap/ediff-save-window-configuration)
+   (ediff-prepare-buffer . outline-show-all)
+   (ediff-quit . lap/ediff-restore-window-configuration)
    ((prog-mode text-mode) . hl-line-mode)
    ((prog-mode text-mode) . lap/show-trailing-whitespace))
 
@@ -179,8 +193,7 @@
   (defun lap/dired-ediff-files ()
     "Ediff marked files, or ask for a file"
     (interactive)
-    (let ((files (dired-get-marked-files))
-          (window-config (current-window-configuration)))
+    (let ((files (dired-get-marked-files)))
       (if (<= (length files) 2)
           (let ((file1 (car files))
                 (file2 (if (cdr files)
@@ -190,11 +203,7 @@
                           (dired-dwim-target-directory)))))
             (if (file-newer-than-file-p file1 file2)
                 (ediff-files file2 file1)
-              (ediff-files file1 file2))
-            (add-hook 'ediff-after-quit-hook-internal
-                      (lambda ()
-                        (setq ediff-after-quit-hook-internal nil)
-                        (set-window-configuration window-config))))
+              (ediff-files file1 file2)))
         (error "No more than 2 files should be marked"))))
 
   :custom
