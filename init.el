@@ -181,8 +181,7 @@
 (use-package dired
   :straight (:type built-in)
   :preface
-  (defvar
-    lap/list-of-dired-switches
+  (defvar lap/list-of-dired-switches
     (if (eq system-type 'darwin)
         '(("-Ahl" . "almost all")
           ("-hl" . "no dotfiles"))
@@ -311,7 +310,8 @@
 
 ;; modus-themes
 (use-package modus-themes
-  :straight t)
+  :straight t
+  :config (modus-themes-select 'modus-operandi))
 
 ;; nord-theme
 ;;
