@@ -93,7 +93,7 @@
   (let ((garden-exec-regex
          "#!/usr/bin/garden-exec.*\n#{.*\n\\(# garden .*\n\\)*# \\(exec \\)?")
         (garden-mode-alist '(("python" . python-mode)
-                            ("bash" . shell-script-mode))))
+                             ("bash" . shell-script-mode))))
     (dolist (mode garden-mode-alist)
       (add-to-list 'magic-fallback-mode-alist
                    (cons (concat garden-exec-regex (car mode)) (cdr mode)))))
