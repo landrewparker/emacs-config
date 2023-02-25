@@ -87,8 +87,6 @@
   (setq
    tab-bar-new-button nil
    tab-bar-close-button nil)
-  (when (eq system-type 'darwin)
-    (add-to-list 'default-frame-alist '(font . "SF Mono 12")))
   (when (display-graphic-p)
     ;; The fixed-pitch face extends default face implicitly but sets
     ;; family to Monospace. Make it use default's family instead. There
