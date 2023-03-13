@@ -4,6 +4,13 @@
 
 ;;; Code:
 
+;; FIXME: Required for emacs-29 which renamed
+;;   native-comp-deferred-compilation-deny-list
+;; to
+;;   native-comp-jit-compilation-deny-list
+;; in emacs#95692f6. Remove when emacs-29 is released.
+(setq straight-repository-branch "develop")
+
 ;; Bootstrap straight.el
 ;; (See https://github.com/radian-software/straight.el#getting-started)
 (defvar bootstrap-version)
