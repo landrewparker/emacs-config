@@ -185,7 +185,8 @@
 
 ;; diminish
 (use-package diminish
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; dired
 (use-package dired
