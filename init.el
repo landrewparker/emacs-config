@@ -408,6 +408,7 @@
 ;; tramp
 (use-package tramp
   :straight (:type built-in)
+  :defer t
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
@@ -424,6 +425,7 @@
 ;; verilog-mode
 (use-package verilog-mode
   :straight t
+  :defer t
   :custom
   (verilog-auto-newline nil))
 
