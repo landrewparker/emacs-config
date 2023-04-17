@@ -244,7 +244,8 @@
 
 ;; eglot
 (use-package eglot
-  :straight t  ; FIXME: Use built-in version when ready
+  :straight t  (:type built-in)
+  :defer t
   :config
   (add-to-list 'eglot-server-programs
                '(verilog-mode . ("svls"))))
