@@ -304,7 +304,8 @@
 
 ;; json-mode
 (use-package json-mode
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; magit
 (use-package magit
@@ -318,7 +319,8 @@
 
 ;; markdown
 (use-package markdown-mode
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; modus-themes
 (use-package modus-themes
@@ -363,6 +365,7 @@
 ;; python
 (use-package python
   :straight (:type built-in)
+  :defer t
   :custom
   (python-shell-interpreter "ipython3")
   (python-shell-interpreter-args "--simple-prompt"))
@@ -451,7 +454,8 @@
 
 ;; yaml-mode
 (use-package yaml-mode
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; yasnippet
 (use-package yasnippet
