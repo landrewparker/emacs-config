@@ -146,9 +146,9 @@
   :bind ("M-o" . ace-window))
 
 ;; all-the-icons
-(use-package all-the-icons
-  :straight t
-  :if (display-graphic-p))
+;; (use-package all-the-icons
+;;   :straight t
+;;   :if (display-graphic-p))
 
 ;; auto-revert
 (use-package autorevert
