@@ -467,6 +467,6 @@
 (use-package yasnippet
   :straight t
   :diminish yas-minor-mode
-  :config (yas-global-mode))
+  :init (yas-global-mode))
 
 ;;; init.el ends here
