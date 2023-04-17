@@ -318,7 +318,7 @@
 ;; marginalia
 (use-package marginalia
   :straight t
-  :config (marginalia-mode))
+  :init (marginalia-mode))
 
 ;; markdown
 (use-package markdown-mode
@@ -376,12 +376,12 @@
 ;; savehist
 (use-package savehist
   :straight (:type built-in)
-  :config (savehist-mode))
+  :init (savehist-mode))
 
 ;; saveplace
 (use-package saveplace
   :straight (:type built-in)
-  :config (save-place-mode))
+  :init (save-place-mode))
 
 ;; server
 (use-package server
@@ -440,7 +440,7 @@
 ;; vertico
 (use-package vertico
   :straight t
-  :config (vertico-mode))
+  :init (vertico-mode))
 
 ;; vscode-dark-plus-theme
 (use-package vscode-dark-plus-theme
