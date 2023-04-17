@@ -302,7 +302,8 @@
 
 ;; magit
 (use-package magit
-  :straight t)
+  :straight t
+  :bind ("C-c g" . magit-file-dispatch))
 
 ;; marginalia
 (use-package marginalia
