@@ -240,7 +240,8 @@
 
 ;; ef-themes
 (use-package ef-themes
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; eglot
 (use-package eglot
@@ -286,7 +287,8 @@
 
 ;; flymake-collection
 (use-package flymake-collection
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; ispell (aspell)
 (use-package ispell
@@ -325,7 +327,7 @@
 ;; modus-themes
 (use-package modus-themes
   :straight t
-  :config (modus-themes-select 'modus-operandi))
+  :defer)
 
 ;; nord-theme
 ;;
@@ -407,7 +409,8 @@
 
 ;; transpose-frame
 (use-package transpose-frame
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; tramp
 (use-package tramp
@@ -440,11 +443,13 @@
 
 ;; vscode-dark-plus-theme
 (use-package vscode-dark-plus-theme
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; wgrep
 (use-package wgrep
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; which-key
 (use-package which-key
