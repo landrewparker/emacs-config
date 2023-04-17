@@ -261,9 +261,9 @@
 (use-package embark
   :straight t
   :bind
-  (("C-c e a"  .  'embark-act)
-   ("C-c e d"  .  'embark-dwim)
-   ("C-c e B"  .  'embark-bindings)))
+  (("C-c e a" . embark-act)
+   ("C-c e d" . embark-dwim)
+   ("C-c e B" . embark-bindings)))
 
 ;; embark-consult
 (use-package embark-consult
@@ -283,8 +283,8 @@
   (python-mode . lap/setup-flymake-python)
   :bind
   (:map flymake-mode-map
-        ("M-n" . 'flymake-goto-next-error)
-        ("M-p" . 'flymake-goto-prev-error)))
+        ("M-n" . flymake-goto-next-error)
+        ("M-p" . flymake-goto-prev-error)))
 
 ;; flymake-collection
 (use-package flymake-collection
