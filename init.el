@@ -175,13 +175,13 @@
 (use-package corfu
   :straight t
   :custom (corfu-auto t)
-  :config (global-corfu-mode))
+  :init (global-corfu-mode))
 
 ;; corfu-terminal
 (use-package corfu-terminal
   :straight t
   :if (not (display-graphic-p))
-  :config (corfu-terminal-mode +1))
+  :init (corfu-terminal-mode +1))
 
 ;; diminish
 (use-package diminish
