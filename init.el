@@ -356,7 +356,8 @@
 
 ;; pdf-tools
 (use-package pdf-tools
-  :straight t)
+  :straight t
+  :magic ("%PDF" . pdf-view-mode))
 
 ;; python
 (use-package python
