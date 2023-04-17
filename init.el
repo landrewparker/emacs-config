@@ -456,7 +456,7 @@
 (use-package which-key
   :straight t
   :diminish
-  :config (which-key-mode))
+  :init (which-key-mode))
 
 ;; yaml-mode
 (use-package yaml-mode
