@@ -27,6 +27,11 @@
   (load bootstrap-file nil 'nomessage))
 (require 'straight)
 
+;; benchmark-init
+(straight-use-package 'benchmark-init)
+(require 'benchmark-init)
+(add-hook 'after-init-hook 'benchmark-init/deactivate)
+
 ;; use-package
 (straight-use-package 'use-package)
 
