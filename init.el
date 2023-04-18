@@ -146,9 +146,10 @@
   :bind ("M-o" . ace-window))
 
 ;; all-the-icons
-;; (use-package all-the-icons
-;;   :straight t
-;;   :if (display-graphic-p))
+(use-package all-the-icons
+  :straight t
+  :if (display-graphic-p)
+  :after doom-modeline-mode)
 
 ;; auto-revert
 (use-package autorevert
@@ -235,9 +236,9 @@
     (force-mode-line-update)))
 
 ;; doom modeline
-;; (use-package doom-modeline
-;;   :straight t
-;;   :config (doom-modeline-mode))
+(use-package doom-modeline
+  :straight t
+  :defer t)
 
 ;; ef-themes
 (use-package ef-themes
