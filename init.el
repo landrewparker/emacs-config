@@ -420,16 +420,6 @@
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
-;; tree-sitter
-(use-package tree-sitter
-  :straight t  ; FIXME: Use built-in version when ready
-  :hook (tree-sitter-after-on . tree-sitter-hl-mode)
-  :init (global-tree-sitter-mode))
-
-(use-package tree-sitter-langs
-  :straight t
-  :after tree-sitter)
-
 ;; verilog-mode
 (use-package verilog-mode
   :straight t
