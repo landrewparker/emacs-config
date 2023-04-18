@@ -281,7 +281,7 @@
   (setq elisp-flymake-byte-compile-load-path load-path)
   :hook
   (emacs-lisp-mode . flymake-mode)
-  (python-mode . lap/setup-flymake-python)
+  (python-ts-mode . lap/setup-flymake-python)
   :bind
   (:map flymake-mode-map
         ("M-n" . flymake-goto-next-error)
@@ -420,6 +420,13 @@
   :defer t
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+
+;; tree-sitter
+(use-package treesit
+  :straight (:type built-in)
+  :defer t
+  :init
+  (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode)))
 
 ;; verilog-mode
 (use-package verilog-mode
