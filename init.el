@@ -9,7 +9,7 @@
 ;; to
 ;;   native-comp-jit-compilation-deny-list
 ;; in emacs#95692f6. Remove when emacs-29 is released.
-(setq straight-repository-branch "develop")
+(setq-default straight-repository-branch "develop")
 
 ;; Bootstrap straight.el
 ;; (See https://github.com/radian-software/straight.el#getting-started)
