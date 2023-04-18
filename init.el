@@ -272,7 +272,7 @@
 
 ;; flymake
 (use-package flymake
-  :straight t  ; FIXME: Use built-in version when ready
+  :straight t  (:type built-in)
   :custom
   (flymake-no-changes-timeout 2)
   (python-flymake-command nil)
