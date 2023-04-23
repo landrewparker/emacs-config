@@ -32,9 +32,6 @@
 (require 'benchmark-init)
 (add-hook 'after-init-hook 'benchmark-init/deactivate)
 
-;; use-package
-(straight-use-package 'use-package)
-
 ;; emacs
 (use-package emacs
   :custom
