@@ -285,6 +285,7 @@
 ;; ispell (aspell)
 (use-package ispell
   :straight (:type built-in)
+  :defer t
   :custom
   (ispell-program-name "aspell")
   (ispell-extra-args
