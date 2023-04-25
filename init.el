@@ -237,7 +237,7 @@
 
 ;; eglot
 (use-package eglot
-  :straight t  (:type built-in)
+  :straight (:type built-in)
   :defer t
   :config
   (add-to-list 'eglot-server-programs
@@ -245,7 +245,7 @@
 
 ;; eldoc
 (use-package eldoc
-  :straight t (:type built-in)
+  :straight (:type built-in)
   :diminish)
 
 ;; embark
@@ -263,7 +263,7 @@
 
 ;; flymake
 (use-package flymake
-  :straight t  (:type built-in)
+  :straight (:type built-in)
   :custom
   (flymake-no-changes-timeout 2)
   (python-flymake-command nil)
@@ -284,7 +284,7 @@
 
 ;; ispell (aspell)
 (use-package ispell
-  :straight t (:type built-in)
+  :straight (:type built-in)
   :custom
   (ispell-program-name "aspell")
   (ispell-extra-args
