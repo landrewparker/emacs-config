@@ -133,6 +133,7 @@
   :custom
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (aw-background nil)
+  (aw-scope 'frame)
   :bind ("M-o" . ace-window))
 
 ;; all-the-icons
