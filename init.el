@@ -298,6 +298,12 @@
            (shell-command-to-string "aspell --help"))
       '("--camel-case")))))
 
+;; jinx
+(use-package jinx
+  :straight t
+  :hook
+  ((text-mode prog-mode conf-mode) . jinx-mode))
+
 ;; json-mode
 (use-package json-mode
   :straight t
