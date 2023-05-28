@@ -127,7 +127,6 @@
 
 ;; auto-revert
 (use-package autorevert
-  :straight (:type built-in)
   :diminish auto-revert-mode
   :mode
   ("\\.log\\'" . auto-revert-tail-mode)
@@ -165,7 +164,6 @@
 
 ;; dired
 (use-package dired
-  :straight (:type built-in)
   :preface
   (defvar lap/list-of-dired-switches
     (if (eq system-type 'darwin)
@@ -242,7 +240,6 @@
 
 ;; eglot
 (use-package eglot
-  :straight (:type built-in)
   :defer t
   :config
   (add-to-list 'eglot-server-programs
@@ -250,7 +247,6 @@
 
 ;; eldoc
 (use-package eldoc
-  :straight (:type built-in)
   :diminish)
 
 ;; embark
@@ -268,7 +264,6 @@
 
 ;; flymake
 (use-package flymake
-  :straight (:type built-in)
   :custom
   (flymake-no-changes-timeout 2)
   (python-flymake-command nil)
@@ -289,7 +284,6 @@
 
 ;; ispell (aspell)
 (use-package ispell
-  :straight (:type built-in)
   :defer t
   :custom
   (ispell-program-name "aspell")
@@ -352,7 +346,6 @@
 
 ;; org
 (use-package org
-  :straight (:type built-in)
   :custom
   (org-babel-load-languages '((C . t)
                               (emacs-lisp . t)
@@ -375,7 +368,6 @@
 
 ;; python
 (use-package python
-  :straight (:type built-in)
   :defer t
   :custom
   (python-shell-interpreter "ipython3")
@@ -383,24 +375,20 @@
 
 ;; savehist
 (use-package savehist
-  :straight (:type built-in)
   :init (savehist-mode))
 
 ;; saveplace
 (use-package saveplace
-  :straight (:type built-in)
   :init (save-place-mode))
 
 ;; server
 (use-package server
-  :straight (:type built-in)
   :config
   (unless (server-running-p)
     (server-start)))
 
 ;; shell
 (use-package shell
-  :straight (:type built-in)
   :init
   (defun lap/shell-mode-setup ()
     "Tell comint that zsh will echo."
@@ -411,7 +399,6 @@
 
 ;; tcl
 (use-package tcl
-  :straight (:type built-in)
   :mode
     (("\\.do\\'" . tcl-mode)
      ("\\.f\\'" . tcl-mode)))
@@ -423,14 +410,12 @@
 
 ;; tramp
 (use-package tramp
-  :straight (:type built-in)
   :defer t
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 ;; tree-sitter
 (use-package treesit
-  :straight (:type built-in)
   :defer t
   :init
   (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode)))
