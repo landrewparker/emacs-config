@@ -31,7 +31,6 @@
   (column-number-mode t)
   (compilation-scroll-output 'first-error)
   (confirm-kill-emacs 'y-or-n-p)
-  (ediff-window-setup-function 'ediff-setup-windows-plain)
   (help-window-select t)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
@@ -41,19 +40,6 @@
   (size-indication-mode t)
 
   :init
-  ;; Variables
-  (defvar lap/ediff-last-window-configuration nil
-    "The last window configuration before ediff started.")
-
-  ;; Functions
-  (defun lap/ediff-save-window-configuration ()
-    "Save the last window configuration before starting ediff."
-    (setq lap/ediff-last-window-configuration (current-window-configuration)))
-
-  (defun lap/ediff-restore-window-configuration ()
-    "Restore the last window configuration before starting ediff."
-    (set-window-configuration lap/ediff-last-window-configuration))
-
   (defun lap/frame-background-mode-light ()
     "Tell Emacs the background is a light color."
     (interactive)
@@ -115,10 +101,7 @@
   (add-to-list 'custom-theme-load-path "~/lib/emacs")
 
   :hook
-  ((ediff-before-setup . lap/ediff-save-window-configuration)
-   (ediff-prepare-buffer . outline-show-all)
-   (ediff-quit . lap/ediff-restore-window-configuration)
-   ((prog-mode text-mode) . hl-line-mode)
+  (((prog-mode text-mode) . hl-line-mode)
    ((prog-mode text-mode) . lap/show-trailing-whitespace))
 
   :bind
@@ -230,6 +213,27 @@
 (use-package doom-modeline
   :straight t
   :defer t)
+
+;; ediff
+(use-package ediff
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
+
+  :init
+  (defvar lap/ediff-last-window-configuration nil
+    "The last window configuration before ediff started.")
+
+  (defun lap/ediff-save-window-configuration ()
+    "Save the last window configuration before starting ediff."
+    (setq lap/ediff-last-window-configuration (current-window-configuration)))
+
+  (defun lap/ediff-restore-window-configuration ()
+    "Restore the last window configuration before starting ediff."
+    (set-window-configuration lap/ediff-last-window-configuration))
+
+  :hook
+  (ediff-before-setup . lap/ediff-save-window-configuration)
+  (ediff-quit . lap/ediff-restore-window-configuration))
 
 ;; ef-themes
 (use-package ef-themes
@@ -358,6 +362,11 @@
   (org-startup-indented t)
   :hook
   (org-mode . visual-line-mode))
+
+;; outline
+(use-package outline
+  :hook
+  (ediff-prepare-buffer . outline-show-all))
 
 ;; pdf-tools
 (use-package pdf-tools
