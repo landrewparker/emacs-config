@@ -340,6 +340,7 @@
 ;; orderless
 (use-package orderless
   :straight t
+  :defer t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
