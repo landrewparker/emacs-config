@@ -383,9 +383,7 @@
 
 ;; server
 (use-package server
-  :config
-  (unless (server-running-p)
-    (server-start)))
+  :hook (after-init . (unless (server-running-p) (server-start))))
 
 ;; shell
 (use-package shell
