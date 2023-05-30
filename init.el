@@ -55,13 +55,6 @@
     (interactive)
     (other-window -1))
 
-  (defun lap/setup-flymake-python ()
-    "Setup flymake for Python mode."
-    (interactive)
-    (add-hook 'flymake-diagnostic-functions 'flymake-collection-pylint nil t)
-    (add-hook 'flymake-diagnostic-functions 'flymake-collection-flake8 nil t)
-    (flymake-mode))
-
   (defun lap/show-trailing-whitespace ()
     "Enable showing trailing whitespace."
     (setq show-trailing-whitespace t))
@@ -271,16 +264,10 @@
   (setq elisp-flymake-byte-compile-load-path load-path)
   :hook
   (emacs-lisp-mode . flymake-mode)
-  (python-ts-mode . lap/setup-flymake-python)
   :bind
   (:map flymake-mode-map
         ("M-n" . flymake-goto-next-error)
         ("M-p" . flymake-goto-prev-error)))
-
-;; flymake-collection
-(use-package flymake-collection
-  :straight t
-  :defer t)
 
 ;; ispell (aspell)
 (use-package ispell
