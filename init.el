@@ -259,7 +259,7 @@
 (use-package flymake
   :custom
   (flymake-no-changes-timeout 2)
-  (python-flymake-command nil)
+  (python-flymake-command '("flake8" "-"))
   :config
   (setq elisp-flymake-byte-compile-load-path load-path)
   :hook
