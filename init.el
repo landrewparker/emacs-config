@@ -34,6 +34,7 @@
   (help-window-select t)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
+  (isearch-lazy-count t)
   (native-comp-async-report-warnings-errors 'silent)
   (require-final-newline 'query)
   (sh-alias-alist '((garden-exec . bash)))
