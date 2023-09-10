@@ -151,6 +151,11 @@
   :if (not (display-graphic-p))
   :init (corfu-terminal-mode +1))
 
+;; csv-mode
+(use-package csv-mode
+  :straight t
+  :defer t)
+
 ;; diminish
 (use-package diminish
   :straight t
