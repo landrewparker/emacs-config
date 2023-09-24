@@ -206,6 +206,12 @@
     (setq mode-name (concat "Dired " (cdar lap/list-of-dired-switches)))
     (force-mode-line-update)))
 
+;; dired-x
+(use-package dired-x
+  :custom
+  (dired-x-hands-off-my-keys nil)
+  :defer t)
+
 ;; doom modeline
 (use-package doom-modeline
   :straight t
