@@ -354,7 +354,7 @@
 ;; modus-themes
 (use-package modus-themes
   :elpaca t
-  :defer)
+  :defer t)
 
 ;; nord-theme
 ;;
