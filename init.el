@@ -56,9 +56,8 @@
 
 ;; diminish
 (use-package diminish
-  :elpaca t
-  :defer t)
-(elpaca-wait)  ;; TODO: Is this necessary? :diminish is defined in use-package.
+  :elpaca t)
+(elpaca-wait)
 
 ;; emacs
 (use-package emacs
