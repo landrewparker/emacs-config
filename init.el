@@ -4,26 +4,62 @@
 
 ;;; Code:
 
-;; Bootstrap straight.el
-;; (See https://github.com/radian-software/straight.el#getting-started)
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-(require 'straight)
+;; Bootstrap Elpaca
+(defvar elpaca-installer-version 0.5)
+(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
+(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
+                              :ref nil
+                              :files (:defaults (:exclude "extensions"))
+                              :build (:not elpaca--activate-package)))
+(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
+       (build (expand-file-name "elpaca/" elpaca-builds-directory))
+       (order (cdr elpaca-order))
+       (default-directory repo))
+  (add-to-list 'load-path (if (file-exists-p build) build repo))
+  (unless (file-exists-p repo)
+    (make-directory repo t)
+    (when (< emacs-major-version 28) (require 'subr-x))
+    (condition-case-unless-debug err
+        (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                 ((zerop (call-process "git" nil buffer t "clone"
+                                       (plist-get order :repo) repo)))
+                 ((zerop (call-process "git" nil buffer t "checkout"
+                                       (or (plist-get order :ref) "--"))))
+                 (emacs (concat invocation-directory invocation-name))
+                 ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                       "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                 ((require 'elpaca))
+                 ((elpaca-generate-autoloads "elpaca" repo)))
+            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+          (error "%s" (with-current-buffer buffer (buffer-string))))
+      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  (unless (require 'elpaca-autoloads nil t)
+    (require 'elpaca)
+    (elpaca-generate-autoloads "elpaca" repo)
+    (load "./elpaca-autoloads")))
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca `(,@elpaca-order))
+
+;; Install Elpaca use-package support and block until available
+(elpaca elpaca-use-package
+  ;; Enable :elpaca use-package keyword.
+  (elpaca-use-package-mode))
+(elpaca-wait)
 
 ;; benchmark-init
-(straight-use-package 'benchmark-init)
-(require 'benchmark-init)
-(add-hook 'after-init-hook 'benchmark-init/deactivate)
+(use-package benchmark-init
+  :elpaca t
+  :demand t
+  :hook
+  (after-init-hook . benchmark-init/deactivate))
+
+;; diminish
+(use-package diminish
+  :elpaca t
+  :defer t)
+(elpaca-wait)  ;; TODO: Is this necessary? :diminish is defined in use-package.
 
 ;; emacs
 (use-package emacs
@@ -106,7 +142,7 @@
 
 ;; ace-window
 (use-package ace-window
-  :straight t
+  :elpaca t
   :custom
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (aw-background nil)
@@ -115,7 +151,7 @@
 
 ;; all-the-icons
 (use-package all-the-icons
-  :straight t
+  :elpaca t
   :if (display-graphic-p)
   :after doom-modeline-mode)
 
@@ -129,7 +165,7 @@
 
 ;; consult
 (use-package consult
-  :straight t
+  :elpaca t
   :bind
   (("C-x b" . consult-buffer)
    ("M-g g" . consult-goto-line)
@@ -141,24 +177,19 @@
 
 ;; corfu
 (use-package corfu
-  :straight t
+  :elpaca t
   :custom (corfu-auto t)
   :init (global-corfu-mode))
 
 ;; corfu-terminal
 (use-package corfu-terminal
-  :straight t
+  :elpaca t
   :if (not (display-graphic-p))
   :init (corfu-terminal-mode +1))
 
 ;; csv-mode
 (use-package csv-mode
-  :straight t
-  :defer t)
-
-;; diminish
-(use-package diminish
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; dired
@@ -214,7 +245,7 @@
 
 ;; doom modeline
 (use-package doom-modeline
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; ediff
@@ -240,7 +271,7 @@
 
 ;; ef-themes
 (use-package ef-themes
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; eglot
@@ -256,7 +287,7 @@
 
 ;; embark
 (use-package embark
-  :straight t
+  :elpaca t
   :bind
   (("C-c e a" . embark-act)
    ("C-c e d" . embark-dwim)
@@ -264,7 +295,7 @@
 
 ;; embark-consult
 (use-package embark-consult
-  :straight t
+  :elpaca t
   :after (embark consult))
 
 ;; flymake
@@ -297,33 +328,33 @@
 
 ;; jinx
 (use-package jinx
-  :straight t
+  :elpaca t
   :hook
   ((text-mode prog-mode conf-mode) . jinx-mode))
 
 ;; json-mode
 (use-package json-mode
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; magit
 (use-package magit
-  :straight t
+  :elpaca t
   :bind ("C-c g" . magit-file-dispatch))
 
 ;; marginalia
 (use-package marginalia
-  :straight t
+  :elpaca t
   :init (marginalia-mode))
 
 ;; markdown
 (use-package markdown-mode
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; modus-themes
 (use-package modus-themes
-  :straight t
+  :elpaca t
   :defer)
 
 ;; nord-theme
@@ -331,14 +362,12 @@
 ;; Use my fork to fix he trailing whitespace background. See:
 ;; https://github.com/arcticicestudio/nord-emacs/issues/79.
 ;;
-(straight-use-package '(nord-theme
-  :host github
-  :repo "landrewparker/nord-emacs"
-  :branch "develop"))
+(use-package nord-theme
+  :elpaca (:host github :repo "landrewparker/nord-emacs" :branch "develop"))
 
 ;; orderless
 (use-package orderless
-  :straight t
+  :elpaca t
   :defer t
   :custom
   (completion-styles '(orderless basic))
@@ -363,7 +392,7 @@
 
 ;; pdf-tools
 (use-package pdf-tools
-  :straight t
+  :elpaca t
   :magic ("%PDF" . pdf-view-mode))
 
 ;; python
@@ -403,7 +432,7 @@
 
 ;; transpose-frame
 (use-package transpose-frame
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; tramp
@@ -420,40 +449,40 @@
 
 ;; verilog-mode
 (use-package verilog-mode
-  :straight t
+  :elpaca t
   :defer t
   :custom
   (verilog-auto-newline nil))
 
 ;; vertico
 (use-package vertico
-  :straight t
+  :elpaca t
   :init (vertico-mode))
 
 ;; vscode-dark-plus-theme
 (use-package vscode-dark-plus-theme
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; wgrep
 (use-package wgrep
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; which-key
 (use-package which-key
-  :straight t
+  :elpaca t
   :diminish
   :init (which-key-mode))
 
 ;; yaml-mode
 (use-package yaml-mode
-  :straight t
+  :elpaca t
   :defer t)
 
 ;; yasnippet
 (use-package yasnippet
-  :straight t
+  :elpaca t
   :diminish yas-minor-mode
   :init (yas-global-mode))
 
