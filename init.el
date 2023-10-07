@@ -362,7 +362,8 @@
 ;; https://github.com/arcticicestudio/nord-emacs/issues/79.
 ;;
 (use-package nord-theme
-  :elpaca (:host github :repo "landrewparker/nord-emacs" :branch "develop"))
+  :elpaca (:host github :repo "landrewparker/nord-emacs" :branch "develop")
+  :defer t)
 
 ;; orderless
 (use-package orderless
