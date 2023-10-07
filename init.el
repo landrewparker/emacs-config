@@ -42,13 +42,13 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
-;; benchmark-init
+;; Install and activate benchmark-init
 (elpaca benchmark-init)
 (elpaca-wait)
 (require 'benchmark-init)
 (add-hook 'elpaca-after-init-hook 'benchmark-init/deactivate)
 
-;; Install Elpaca use-package support and block until available
+;; Install Elpaca use-package support
 (elpaca elpaca-use-package
   ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode))
