@@ -43,19 +43,18 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
-;; Install and activate benchmark-init
+;; Install and activate benchmark-init. Deactivate it after init.
 (elpaca benchmark-init)
 (elpaca-wait)
 (require 'benchmark-init)
 (add-hook 'elpaca-after-init-hook 'benchmark-init/deactivate)
 
-;; Install Elpaca use-package support
+;; Install Elpaca use-package support and enable :elpaca keyword
 (elpaca elpaca-use-package
-  ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode))
 (elpaca-wait)
 
-;; diminish
+;; Make diminish available for use-package :diminish
 (use-package diminish
   :elpaca t)
 (elpaca-wait)
