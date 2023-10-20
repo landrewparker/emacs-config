@@ -117,7 +117,7 @@
 
   ;; garden-exec header matching
   (let ((garden-exec-regex
-         "#!/usr/bin/garden-exec.*\n#{.*\n\\(# garden .*\n\\)*# \\(exec \\)?")
+         "#!/usr/bin/garden-exec.*\n#{.*\n\\(# .*\n\\)*# \\(exec \\)?")
         (garden-mode-alist '(("python" . python-mode)
                              ("bash" . shell-script-mode))))
     (dolist (mode garden-mode-alist)
