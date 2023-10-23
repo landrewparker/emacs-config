@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: python-garden-header
+# key: #!
+# --
+#!/usr/bin/garden-exec
+#{
+# garden env-keep-only 'SLURM*' 'DESPOT*' --user
+# garden load desres-python/3.10.7-06c7/bin
+# exec python \$0 "\$@"
+#}

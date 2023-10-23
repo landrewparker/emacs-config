@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: bash-garden-header
+# key: #!
+# --
+#!/usr/bin/garden-exec
+#{
+# garden env-keep-only 'SLURM*' 'DESPOT*' --user
+# exec bash \$0 "\$@"
+#}
