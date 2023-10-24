@@ -66,6 +66,7 @@
   (compilation-scroll-output 'first-error)
   (confirm-kill-emacs 'y-or-n-p)
   (help-window-select t)
+  (help-at-pt-display-when-idle t)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
   (isearch-lazy-count t)
