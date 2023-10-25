@@ -419,6 +419,8 @@
 
 ;; shell
 (use-package shell
+  :custom
+  (comint-input-ring-size 5000)
   :init
   (defun lap/shell-mode-setup ()
     "Tell comint that zsh will echo."
