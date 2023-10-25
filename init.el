@@ -393,7 +393,10 @@
 ;; pdf-tools
 (use-package pdf-tools
   :elpaca t
-  :magic ("%PDF" . pdf-view-mode))
+  :hook
+  (pdf-view-mode . pdf-view-themed-minor-mode)
+  :magic
+  ("%PDF" . pdf-view-mode))
 
 ;; python
 (use-package python
