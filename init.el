@@ -415,7 +415,8 @@
 
 ;; server
 (use-package server
-  :hook (after-init . (unless (server-running-p) (server-start))))
+  :hook
+  (after-init . (lambda () (unless (server-running-p) (server-start)))))
 
 ;; shell
 (use-package shell
