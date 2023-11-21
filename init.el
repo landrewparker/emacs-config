@@ -155,9 +155,13 @@
 
 ;; auto-revert
 (use-package autorevert
+  :custom
+  (auto-revert-use-notify nil)
   :diminish auto-revert-mode
   :mode
-  ("\\.log\\'" . auto-revert-tail-mode)
+  (("\\.log\\'" . auto-revert-tail-mode)
+   ("\\.out\\'" . auto-revert-tail-mode)
+   ("\\.err\\'" . auto-revert-tail-mode))
   :hook
   (auto-revert-tail-mode . lap/log-handler))
 
