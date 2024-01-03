@@ -5,6 +5,6 @@
 ;;; Code:
 
 ;; Disable package.el
-(setq-default package-enable-at-startup nil)
+(setq package-enable-at-startup nil)
 
 ;;; early-init.el ends here
