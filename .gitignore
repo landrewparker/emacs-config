@@ -1,0 +1,16 @@
+/.cache/
+/.emacs.desktop*
+/.lsp-*
+/auto-save-list/
+/bookmarks*
+/eln-cache/
+/elpa/
+/elpaca/
+/eshell/
+/history
+/places
+/projects
+/tramp
+/transient/
+/tree-sitter/
+/url/
