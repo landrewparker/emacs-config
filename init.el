@@ -279,6 +279,8 @@
 ;; eat
 (use-package eat
   :ensure t
+  :custom
+  (eat-term-scrollback-size 2000000)
   :defer t)
 
 ;; ediff
