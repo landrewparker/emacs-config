@@ -472,8 +472,9 @@
   (comint-input-ring-size 5000)
   :init
   (defun lap/shell-mode-setup ()
-    "Tell comint that zsh will echo."
-    (if (string-equal shell--start-prog "zsh")
+    "Tell comint that tcsh and zsh will echo."
+    (if (or (string-equal shell--start-prog "zsh")
+            (string-equal shell--start-prog "tcsh"))
         (setq-local comint-process-echoes t)))
   :hook
   (shell-mode . lap/shell-mode-setup))
