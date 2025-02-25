@@ -191,6 +191,12 @@
   :ensure t
   :bind (:map calc-mode-map ("C-o" . casual-calc-tmenu)))
 
+;; clipetty
+(use-package clipetty
+  :ensure t
+  :diminish
+  :init (global-clipetty-mode))
+
 ;; consult
 (use-package consult
   :ensure t
@@ -214,11 +220,6 @@
   :ensure t
   :if (not (display-graphic-p))
   :init (corfu-terminal-mode +1))
-
-;; clipetty
-(use-package clipetty
-  :ensure t
-  :init (global-clipetty-mode))
 
 ;; csv-mode
 (use-package csv-mode
