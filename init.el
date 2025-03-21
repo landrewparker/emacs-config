@@ -84,7 +84,8 @@
   (defun lap/log-handler ()
     "Settings for log files."
     (goto-char (point-max))
-    (read-only-mode t))
+    (read-only-mode t)
+    (hl-line-mode))
 
   (defun lap/previous-window ()
     "Switch to previous window."
