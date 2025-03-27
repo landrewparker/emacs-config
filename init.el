@@ -161,7 +161,7 @@
 
 ;; all-the-icons
 (use-package all-the-icons
-  :ensure t
+  :ensure (:depth 1)
   :if (display-graphic-p)
   :after doom-modeline-mode)
 
@@ -189,7 +189,7 @@
 
 ;; casual
 (use-package casual
-  :ensure t
+  :ensure (:depth 1)
   :bind (:map calc-mode-map ("C-o" . casual-calc-tmenu)))
 
 ;; clipetty
@@ -400,7 +400,7 @@
 
 ;; modus-themes
 (use-package modus-themes
-  :ensure t
+  :ensure (:depth 1)
   :defer t)
 
 ;; nord-theme
@@ -505,7 +505,7 @@
 
 ;; verilog-mode
 (use-package verilog-mode
-  :ensure t
+  :ensure (:depth 1)
   :defer t
   :custom
   (verilog-auto-newline nil)
@@ -521,7 +521,7 @@
 
 ;; vscode-dark-plus-theme
 (use-package vscode-dark-plus-theme
-  :ensure t
+  :ensure (:depth 1)
   :defer t)
 
 ;; wgrep
