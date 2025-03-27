@@ -505,8 +505,14 @@
 
 ;; verilog-mode
 (use-package verilog-mode
-  :ensure (:depth 1)
   :defer t
+  :ensure (:host github
+           :repo "veripool/verilog-mode"
+           ;; The default make target also compiles e/verilog-mode.elc
+           ;; which will not be used, but seems better than the
+           ;; potentially fragile "e/verilog-mode.el" target.
+           :pre-build (("make"))
+           :files ("e/*.el"))
   :custom
   (verilog-auto-newline nil)
   (verilog-indent-level 2)
