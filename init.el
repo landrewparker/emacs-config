@@ -405,11 +405,11 @@
 
 ;; nord-theme
 ;;
-;; Use my fork to fix he trailing whitespace background. See:
+;; Use my fork to fix trailing white space background. See:
 ;; https://github.com/arcticicestudio/nord-emacs/issues/79.
 ;;
 (use-package nord-theme
-  :ensure (:host github :repo "landrewparker/nord-emacs" :branch "develop")
+  :ensure (:host github :repo "landrewparker/nord-emacs" :branch "main")
   :defer t)
 
 ;; orderless
