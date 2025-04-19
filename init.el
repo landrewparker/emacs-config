@@ -142,7 +142,8 @@
   (("C-c ;" . comment-line)  ; C-; is note available in terminals
    ("C-c c" . compile)
    ("C-c p" . lap/previous-window)
-   ("C-c r" . revert-buffer)))
+   ("C-c r" . revert-buffer)
+   ("C-c y" . mouse-yank-primary)))
 
 ;; ace-window
 (use-package ace-window
