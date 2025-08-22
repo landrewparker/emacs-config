@@ -88,11 +88,6 @@
     (read-only-mode t)
     (hl-line-mode))
 
-  (defun lap/previous-window ()
-    "Switch to previous window."
-    (interactive)
-    (other-window -1))
-
   (defun lap/set-terminal-cursor-color-to-theme ()
     "Set the terminal's cursor color to match the theme's cursor color."
     (interactive)
@@ -142,7 +137,6 @@
   :bind
   (("C-c ;" . comment-line)  ; C-; is note available in terminals
    ("C-c c" . compile)
-   ("C-c p" . lap/previous-window)
    ("C-c f" . find-file-at-point)
    ("C-c r" . revert-buffer)
    ("C-c y" . mouse-yank-primary)))
@@ -151,10 +145,12 @@
 (use-package ace-window
   :ensure t
   :custom
+  (aw-background nil)
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (aw-scope 'frame)
   :bind
-  (("M-o" . ace-window)
+  (("M-o" . ace-window)   ;; diff-mode uses M-o for diff-goto-source
+   ("C-c o" . ace-window)
    ("C-c 0" . ace-delete-window))
   :config
   (ace-window-display-mode)
