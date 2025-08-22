@@ -158,6 +158,12 @@
   ;; Restrict themes from using big faces to prevent jumpy buffer text
   (aw-leading-char-face ((t (:height 1.0)))))
 
+;; activities
+(use-package activities
+  :ensure t
+  :init
+  (activities-mode))
+
 ;; all-the-icons
 (use-package all-the-icons
   :ensure (:depth 1)
