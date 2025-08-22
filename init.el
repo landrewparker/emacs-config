@@ -70,6 +70,7 @@
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
   (isearch-lazy-count t)
+  (Man-sed-command "gsed")
   (native-comp-async-report-warnings-errors 'silent)
   (repeat-mode t)
   (require-final-newline 'query)
