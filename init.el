@@ -277,6 +277,11 @@
     (setq mode-name (concat "Dired " (cdar lap/list-of-dired-switches)))
     (force-mode-line-update)))
 
+;; doric-themes
+(use-package doric-themes
+  :ensure t
+  :defer t)
+
 ;; eat
 (use-package eat
   :ensure t
