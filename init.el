@@ -164,12 +164,6 @@
   :init
   (activities-mode))
 
-;; all-the-icons
-(use-package all-the-icons
-  :ensure (:depth 1)
-  :if (display-graphic-p)
-  :after doom-modeline-mode)
-
 ;; auto-revert
 (use-package autorevert
   :custom
