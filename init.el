@@ -459,6 +459,9 @@
 (use-package treesit
   :defer t
   :init
+  (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
   (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode)))
 
 ;; verilog-mode
