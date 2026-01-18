@@ -508,3 +508,23 @@
   :init (yas-global-mode))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(ace-window activities casual clipetty corfu-terminal diminish
+                doric-themes eat ef-themes embark-consult jinx
+                json-mode magit marginalia markdown-mode modus-themes
+                nord-theme orderless pdf-tools transpose-frame vertico
+                vscode-dark-plus-theme wgrep which-key yaml-mode
+                yasnippet))
+ '(package-vc-selected-packages
+   '((nord-theme :url "https://github.com/landrewparker/nord-emacs.git"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
