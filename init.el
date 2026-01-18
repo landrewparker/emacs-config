@@ -403,7 +403,7 @@
   :magic
   ("%PDF" . pdf-view-mode)
   :config
-  (pdf-tools-install :no-query))
+  (pdf-tools-install))
 
 ;; python
 (use-package python
