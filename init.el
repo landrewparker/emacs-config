@@ -307,6 +307,11 @@
         ("M-n" . flymake-goto-next-error)
         ("M-p" . flymake-goto-prev-error)))
 
+;; ghostel
+(use-package ghostel
+  :ensure t
+  :commands ghostel)
+
 ;; ispell (aspell)
 (use-package ispell
   :defer t
@@ -515,7 +520,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(ace-window activities casual clipetty corfu-terminal diminish
-                doric-themes eat ef-themes embark-consult jinx
+                doric-themes eat ef-themes embark-consult ghostel jinx
                 json-mode magit marginalia markdown-mode modus-themes
                 nord-theme orderless pdf-tools transpose-frame vertico
                 vscode-dark-plus-theme wgrep which-key yaml-mode
